@@ -1,6 +1,8 @@
 import React from 'react';
+import { LogoLink } from '../../components/logos/logo-link';
+import { FooterLink } from '../../components/footers/footer-link';
 
-function MoviePageDetailsScreen(): JSX.Element {
+export function MoviePageDetails(): JSX.Element {
   return (
     <React.Fragment>
       <section className="film-card film-card--full">
@@ -12,13 +14,7 @@ function MoviePageDetailsScreen(): JSX.Element {
           <h1 className="visually-hidden">WTW</h1>
 
           <header className="page-header film-card__head">
-            <div className="logo">
-              <a href="main.html" className="logo__link">
-                <span className="logo__letter logo__letter--1">W</span>
-                <span className="logo__letter logo__letter--2">T</span>
-                <span className="logo__letter logo__letter--3">W</span>
-              </a>
-            </div>
+            <LogoLink />
 
             <ul className="user-block">
               <li className="user-block__item">
@@ -169,22 +165,8 @@ function MoviePageDetailsScreen(): JSX.Element {
           </div>
         </section>
 
-        <footer className="page-footer">
-          <div className="logo">
-            <a href="main.html" className="logo__link logo__link--light">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
-          </div>
-
-          <div className="copyright">
-            <p>© 2019 What to watch Ltd.</p>
-          </div>
-        </footer>
+        <FooterLink />
       </div>
     </React.Fragment>
   );
 }
-
-export default MoviePageDetailsScreen;

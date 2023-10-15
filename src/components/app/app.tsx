@@ -1,14 +1,8 @@
-import MainScreen from '../../pages/main-screen/main-screen';
-import { Film } from '../../types/types';
+import { MainPage } from '../../pages/main-page/main-page';
+import { MainPageProps } from '../../pages/main-page/main-page';
 
-type AppProps = {
-    promoFilm: Film;
-}
-
-function App({promoFilm}: AppProps): JSX.Element {
+export function App({promoFilm}: MainPageProps): JSX.Element {
   return (
-    <MainScreen promoFilm={promoFilm}/>
+    <MainPage promoFilm={promoFilm}/>
   );
 }
-
-export default App;
