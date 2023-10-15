@@ -1,6 +1,8 @@
 import React from 'react';
+import { LogoLink } from '../../components/logos/logo-link';
+import { FooterLink } from '../../components/footers/footer-link';
 
-function MoviePageInListScreen(): JSX.Element {
+export function MoviePageReviews(): JSX.Element {
   return (
     <React.Fragment>
       <section className="film-card film-card--full">
@@ -12,13 +14,7 @@ function MoviePageInListScreen(): JSX.Element {
           <h1 className="visually-hidden">WTW</h1>
 
           <header className="page-header film-card__head">
-            <div className="logo">
-              <a href="main.html" className="logo__link">
-                <span className="logo__letter logo__letter--1">W</span>
-                <span className="logo__letter logo__letter--2">T</span>
-                <span className="logo__letter logo__letter--3">W</span>
-              </a>
-            </div>
+            <LogoLink />
 
             <ul className="user-block">
               <li className="user-block__item">
@@ -48,8 +44,8 @@ function MoviePageInListScreen(): JSX.Element {
                   <span>Play</span>
                 </button>
                 <button className="btn btn--list film-card__button" type="button">
-                  <svg viewBox="0 0 18 14" width="18" height="14">
-                    <use xlinkHref="#in-list"></use>
+                  <svg viewBox="0 0 19 20" width="19" height="20">
+                    <use xlinkHref="#add"></use>
                   </svg>
                   <span>My list</span>
                   <span className="film-card__count">9</span>
@@ -69,34 +65,99 @@ function MoviePageInListScreen(): JSX.Element {
             <div className="film-card__desc">
               <nav className="film-nav film-card__nav">
                 <ul className="film-nav__list">
-                  <li className="film-nav__item film-nav__item--active">
+                  <li className="film-nav__item">
                     <a href="#" className="film-nav__link">Overview</a>
                   </li>
                   <li className="film-nav__item">
                     <a href="#" className="film-nav__link">Details</a>
                   </li>
-                  <li className="film-nav__item">
+                  <li className="film-nav__item film-nav__item--active">
                     <a href="#" className="film-nav__link">Reviews</a>
                   </li>
                 </ul>
               </nav>
 
-              <div className="film-rating">
-                <div className="film-rating__score">8,9</div>
-                <p className="film-rating__meta">
-                  <span className="film-rating__level">Very good</span>
-                  <span className="film-rating__count">240 ratings</span>
-                </p>
-              </div>
+              <div className="film-card__reviews film-card__row">
+                <div className="film-card__reviews-col">
+                  <div className="review">
+                    <blockquote className="review__quote">
+                      <p className="review__text">Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director&apos;s funniest and most exquisitely designed films in years.</p>
 
-              <div className="film-card__text">
-                <p>In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave&apos;s friend and protege.</p>
+                      <footer className="review__details">
+                        <cite className="review__author">Kate Muir</cite>
+                        <time className="review__date" dateTime="2016-12-24">December 24, 2016</time>
+                      </footer>
+                    </blockquote>
 
-                <p>Gustave prides himself on providing first-className service to the hotel&apos;s guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustave&apos;s lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.</p>
+                    <div className="review__rating">8,9</div>
+                  </div>
 
-                <p className="film-card__director"><strong>Director: Wes Anderson</strong></p>
+                  <div className="review">
+                    <blockquote className="review__quote">
+                      <p className="review__text">Anderson&apos;s films are too precious for some, but for those of us willing to lose ourselves in them, they&apos;re a delight. &quot;The Grand Budapest Hotel&quot; is no different, except that he has added a hint of gravitas to the mix, improving the recipe.</p>
 
-                <p className="film-card__starring"><strong>Starring: Bill Murray, Edward Norton, Jude Law, Willem Dafoe and other</strong></p>
+                      <footer className="review__details">
+                        <cite className="review__author">Bill Goodykoontz</cite>
+                        <time className="review__date" dateTime="2015-11-18">November 18, 2015</time>
+                      </footer>
+                    </blockquote>
+
+                    <div className="review__rating">8,0</div>
+                  </div>
+
+                  <div className="review">
+                    <blockquote className="review__quote">
+                      <p className="review__text">I didn&apos;t find it amusing, and while I can appreciate the creativity, it&apos;s an hour and 40 minutes I wish I could take back.</p>
+
+                      <footer className="review__details">
+                        <cite className="review__author">Amanda Greever</cite>
+                        <time className="review__date" dateTime="2015-11-18">November 18, 2015</time>
+                      </footer>
+                    </blockquote>
+
+                    <div className="review__rating">8,0</div>
+                  </div>
+                </div>
+                <div className="film-card__reviews-col">
+                  <div className="review">
+                    <blockquote className="review__quote">
+                      <p className="review__text">The mannered, madcap proceedings are often delightful, occasionally silly, and here and there, gruesome and/or heartbreaking.</p>
+
+                      <footer className="review__details">
+                        <cite className="review__author">Matthew Lickona</cite>
+                        <time className="review__date" dateTime="2016-12-20">December 20, 2016</time>
+                      </footer>
+                    </blockquote>
+
+                    <div className="review__rating">7,2</div>
+                  </div>
+
+                  <div className="review">
+                    <blockquote className="review__quote">
+                      <p className="review__text">It is certainly a magical and childlike way of storytelling, even if the content is a little more adult.</p>
+
+                      <footer className="review__details">
+                        <cite className="review__author">Paula Fleri-Soler</cite>
+                        <time className="review__date" dateTime="2016-12-20">December 20, 2016</time>
+                      </footer>
+                    </blockquote>
+
+                    <div className="review__rating">7,6</div>
+                  </div>
+
+                  <div className="review">
+                    <blockquote className="review__quote">
+                      <p className="review__text">It is certainly a magical and childlike way of storytelling, even if the content is a little more adult.</p>
+
+                      <footer className="review__details">
+                        <cite className="review__author">Paula Fleri-Soler</cite>
+                        <time className="review__date" dateTime="2016-12-20">December 20, 2016</time>
+                      </footer>
+                    </blockquote>
+
+                    <div className="review__rating">7,0</div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -146,22 +207,8 @@ function MoviePageInListScreen(): JSX.Element {
           </div>
         </section>
 
-        <footer className="page-footer">
-          <div className="logo">
-            <a href="main.html" className="logo__link logo__link--light">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
-          </div>
-
-          <div className="copyright">
-            <p>© 2019 What to watch Ltd.</p>
-          </div>
-        </footer>
+        <FooterLink />
       </div>
     </React.Fragment>
   );
 }
-
-export default MoviePageInListScreen;
