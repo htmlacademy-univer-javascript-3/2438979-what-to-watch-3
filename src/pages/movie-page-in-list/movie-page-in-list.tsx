@@ -1,6 +1,8 @@
 import React from 'react';
+import { LogoLink } from '../../components/logos/logo-link';
+import { FooterLink } from '../../components/footers/footer-link';
 
-function MoviePageScreen(): JSX.Element {
+export function MoviePageInList(): JSX.Element {
   return (
     <React.Fragment>
       <section className="film-card film-card--full">
@@ -12,13 +14,7 @@ function MoviePageScreen(): JSX.Element {
           <h1 className="visually-hidden">WTW</h1>
 
           <header className="page-header film-card__head">
-            <div className="logo">
-              <a href="main.html" className="logo__link">
-                <span className="logo__letter logo__letter--1">W</span>
-                <span className="logo__letter logo__letter--2">T</span>
-                <span className="logo__letter logo__letter--3">W</span>
-              </a>
-            </div>
+            <LogoLink />
 
             <ul className="user-block">
               <li className="user-block__item">
@@ -48,8 +44,8 @@ function MoviePageScreen(): JSX.Element {
                   <span>Play</span>
                 </button>
                 <button className="btn btn--list film-card__button" type="button">
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
+                  <svg viewBox="0 0 18 14" width="18" height="14">
+                    <use xlinkHref="#in-list"></use>
                   </svg>
                   <span>My list</span>
                   <span className="film-card__count">9</span>
@@ -146,22 +142,8 @@ function MoviePageScreen(): JSX.Element {
           </div>
         </section>
 
-        <footer className="page-footer">
-          <div className="logo">
-            <a href="main.html" className="logo__link logo__link--light">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
-          </div>
-
-          <div className="copyright">
-            <p>© 2019 What to watch Ltd.</p>
-          </div>
-        </footer>
+        <FooterLink />
       </div>
     </React.Fragment>
   );
 }
-
-export default MoviePageScreen;

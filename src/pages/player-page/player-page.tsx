@@ -1,4 +1,6 @@
-function PlayerPauseScreen(): JSX.Element {
+import { PropsWithChildren } from 'react';
+
+export function PlayerPage({children}: PropsWithChildren<Record<never, never>>): JSX.Element {
   return (
     <div className="player">
       <video src="#" className="player__video" poster="img/player-poster.jpg"></video>
@@ -15,12 +17,7 @@ function PlayerPauseScreen(): JSX.Element {
         </div>
 
         <div className="player__controls-row">
-          <button type="button" className="player__play">
-            <svg viewBox="0 0 14 21" width="14" height="21">
-              <use xlinkHref="#pause"></use>
-            </svg>
-            <span>Pause</span>
-          </button>
+          {children}
           <div className="player__name">Transpotting</div>
 
           <button type="button" className="player__full-screen">
@@ -34,5 +31,3 @@ function PlayerPauseScreen(): JSX.Element {
     </div>
   );
 }
-
-export default PlayerPauseScreen;
