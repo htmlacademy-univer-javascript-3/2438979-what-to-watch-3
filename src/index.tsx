@@ -1,13 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { App } from './components/app/app';
-import { Film } from './types/types';
-
-const promoFilm : Film = {
-  title: 'The Grand Budapest Hotel',
-  genre: 'Drama',
-  premiereYear: 2014
-};
+import { promoFilm } from './mocks/promo-film';
+import { films } from './mocks/films';
+import { videoSource } from './mocks/video-source';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -15,6 +11,6 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <App promoFilm={promoFilm}/>
+    <App promoFilm={promoFilm} films={films} videoSource={videoSource}/>
   </React.StrictMode>
 );
