@@ -10,42 +10,64 @@ import { Route, BrowserRouter, Routes } from 'react-router-dom';
 import { AppRoute } from '../../constants/app-route';
 import { PrivateRoute } from '../private-route/private-route';
 import { AuthorizationStatus } from '../../constants/authorization-status';
+import { PlayButton } from '../../pages/player-page/play-button-component';
 
-export function App({promoFilm}: MainPageProps) {
+
+export type AppProps = MainPageProps & {
+  videoSource: string;
+}
+
+export function App({promoFilm, films, videoSource}: AppProps) {
   return (
     <BrowserRouter>
       <Routes>
         <Route
           path={AppRoute.Main}
-          element={<MainPage promoFilm={promoFilm}/>}
+          element={
+            <MainPage
+              promoFilm={promoFilm}
+              films={films}
+            />
+          }
         />
         <Route
           path={AppRoute.AddReview}
-          element={<AddReviewPage />}
+          element={
+            <AddReviewPage
+              id={1}
+              title={promoFilm.title}
+              imageSource={promoFilm.imageSource}
+              posterSource={promoFilm.posterSource}
+            />
+          }
         />
         <Route
           path={AppRoute.Film}
-          element={<MoviePage />}
+          element={<MoviePage/>}
         />
         <Route
           path={AppRoute.Player}
-          element={<PlayerPage />}
+          element={
+            <PlayerPage videoSource={videoSource}>
+              <PlayButton/>
+            </PlayerPage>
+          }
         />
         <Route
           path={AppRoute.SignIn}
-          element={<SignInPage />}
+          element={<SignInPage/>}
         />
         <Route
           path={AppRoute.MyList}
           element={
             <PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}>
-              <MyListPage />
+              <MyListPage films={films}/>
             </PrivateRoute>
           }
         />
         <Route
           path="*"
-          element={<NotFoundPage />}
+          element={<NotFoundPage/>}
         />
       </Routes>
     </BrowserRouter>

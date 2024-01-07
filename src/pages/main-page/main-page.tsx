@@ -1,19 +1,21 @@
 import React from 'react';
-import { SmallFilmCard } from '../../components/small-film-card/small-film-card';
-import { Film } from '../../types/types';
+import { PromoFilm } from '../../types/types';
 import { Logo } from '../../components/logos/logo';
 import { Footer } from '../../components/footers/footer';
+import { Film } from '../../types/types';
+import { FilmList } from './film-list';
 
 export type MainPageProps = {
-    promoFilm: Film;
+  promoFilm: PromoFilm;
+  films: Film[];
 }
 
-export function MainPage({promoFilm}: MainPageProps): JSX.Element {
+export function MainPage({promoFilm, films}: MainPageProps): JSX.Element {
   return (
     <React.Fragment>
       <section className="film-card">
         <div className="film-card__bg">
-          <img src="img/bg-the-grand-budapest-hotel.jpg" alt={promoFilm.title} />
+          <img src={promoFilm.imageSource} alt={promoFilm.title} />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -36,7 +38,7 @@ export function MainPage({promoFilm}: MainPageProps): JSX.Element {
         <div className="film-card__wrap">
           <div className="film-card__info">
             <div className="film-card__poster">
-              <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327" />
+              <img src={promoFilm.posterSource} alt="The Grand Budapest Hotel poster" width="218" height="327" />
             </div>
 
             <div className="film-card__desc">
@@ -103,35 +105,14 @@ export function MainPage({promoFilm}: MainPageProps): JSX.Element {
             </li>
           </ul>
 
-          <div className="catalog__films-list">
-            <SmallFilmCard title="Fantastic Beasts: The Crimes of Grindelwald" imageSrc="img/fantastic-beasts-the-crimes-of-grindelwald.jpg" />
-            <SmallFilmCard title="Bohemian Rhapsody" imageSrc="img/bohemian-rhapsody.jpg" />
-            <SmallFilmCard title="Macbeth" imageSrc="img/macbeth.jpg" />
-            <SmallFilmCard title="Aviator" imageSrc="img/aviator.jpg" />
-            <SmallFilmCard title="We need to talk about Kevin" imageSrc="img/we-need-to-talk-about-kevin.jpg" />
-            <SmallFilmCard title="What We Do in the Shadows" imageSrc="img/what-we-do-in-the-shadows.jpg" />
-            <SmallFilmCard title="Revenant" imageSrc="img/revenant.jpg" />
-            <SmallFilmCard title="Johnny English" imageSrc="img/johnny-english.jpg" />
-            <SmallFilmCard title="Shutter Island" imageSrc="img/shutter-island.jpg" />
-            <SmallFilmCard title="Pulp Fiction" imageSrc="img/pulp-fiction.jpg" />
-            <SmallFilmCard title="No Country for Old Men" imageSrc="img/no-country-for-old-men.jpg" />
-            <SmallFilmCard title="Snatch" imageSrc="img/snatch.jpg" />
-            <SmallFilmCard title="Moonrise Kingdom" imageSrc="img/moonrise-kingdom.jpg" />
-            <SmallFilmCard title="Seven Years in Tibet" imageSrc="img/seven-years-in-tibet.jpg" />
-            <SmallFilmCard title="Midnight Special" imageSrc="img/midnight-special.jpg" />
-            <SmallFilmCard title="War of the Worlds" imageSrc="img/war-of-the-worlds.jpg" />
-            <SmallFilmCard title="Dardjeeling Limited" imageSrc="img/dardjeeling-limited.jpg" />
-            <SmallFilmCard title="Orlando" imageSrc="img/orlando.jpg" />
-            <SmallFilmCard title="Mindhunter" imageSrc="img/mindhunter.jpg" />
-            <SmallFilmCard title="Midnight Special" imageSrc="img/midnight-special.jpg" />
-          </div>
+          <FilmList films={films}/>
 
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>
           </div>
         </section>
 
-        <Footer />
+        <Footer/>
       </div>
     </React.Fragment>
   );
