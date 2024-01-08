@@ -6,8 +6,9 @@ import { FilmList } from '../../components/film-list/film-list';
 import { GenresList } from './genres-list';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux-hooks';
 import { useEffect } from 'react';
-import { changeGenre } from '../../store/action';
+import { changeGenre, resetFilmsToShowCount } from '../../store/action';
 import { GenreType } from '../../constants/genre-type';
+import { ShowMoreButton } from './show-more';
 
 export type MainPageProps = {
   promoFilm: PromoFilm;
@@ -16,8 +17,10 @@ export type MainPageProps = {
 export function MainPage({promoFilm}: MainPageProps): JSX.Element {
   const dispatch = useAppDispatch();
   const films = useAppSelector((state) => state.filmsByGenre);
+  const filmsToShowCount = useAppSelector((state) => state.filmsByGenreCount);
   useEffect(() => {
     dispatch(changeGenre(GenreType.AllGenres));
+    dispatch(resetFilmsToShowCount());
   }, [dispatch]);
   return (
     <React.Fragment>
@@ -80,12 +83,9 @@ export function MainPage({promoFilm}: MainPageProps): JSX.Element {
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
           <GenresList/>
-          <FilmList films={films}/>
-          <div className="catalog__more">
-            <button className="catalog__button" type="button">Show more</button>
-          </div>
+          <FilmList films={films.slice(0, filmsToShowCount)}/>
+          {filmsToShowCount < films.length ? <ShowMoreButton/> : null}
         </section>
-
         <Footer/>
       </div>
     </React.Fragment>

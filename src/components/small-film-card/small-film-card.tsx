@@ -2,6 +2,7 @@ import { Film } from '../../types/types';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { CardVideoPlayer } from './card-video-player';
+import { PREVIEW_VIDEO_DELAY_IN_MS } from '../../constants/integer-constants';
 
 type SmallFilmCardProps = {
   film: Film;
@@ -11,13 +12,12 @@ type SmallFilmCardProps = {
 export function SmallFilmCard({film, setActiveCardId}: SmallFilmCardProps): JSX.Element {
   const [isMouseOverCard, setIsMouseOverCard] = useState(false);
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
-  const delayInMs = 1000;
 
   useEffect(() => {
     let isMounted = true;
 
     if (isMouseOverCard) {
-      setTimeout(() => isMounted && setIsVideoPlaying(true), delayInMs);
+      setTimeout(() => isMounted && setIsVideoPlaying(true), PREVIEW_VIDEO_DELAY_IN_MS);
     }
 
     return () => {
