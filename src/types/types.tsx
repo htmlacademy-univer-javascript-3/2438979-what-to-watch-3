@@ -10,4 +10,5 @@ export type Film = {
   id: number;
   title: string;
   imageSource: string;
+  videoSource: string;
 }
