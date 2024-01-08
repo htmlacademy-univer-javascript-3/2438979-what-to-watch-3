@@ -11,4 +11,5 @@ export type Film = {
   title: string;
   imageSource: string;
   videoSource: string;
+  genre: string;
 }
