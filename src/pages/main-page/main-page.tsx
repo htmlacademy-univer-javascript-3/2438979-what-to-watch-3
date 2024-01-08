@@ -3,7 +3,7 @@ import { PromoFilm } from '../../types/types';
 import { Logo } from '../../components/logos/logo';
 import { Footer } from '../../components/footers/footer';
 import { Film } from '../../types/types';
-import { FilmList } from './film-list';
+import { FilmList } from '../../components/film-list/film-list';
 
 export type MainPageProps = {
   promoFilm: PromoFilm;

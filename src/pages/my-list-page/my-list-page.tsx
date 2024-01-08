@@ -1,7 +1,7 @@
 import { LogoLink } from '../../components/logos/logo-link';
 import { FooterLink } from '../../components/footers/footer-link';
 import { Film } from '../../types/types';
-import { FilmList } from '../main-page/film-list';
+import { FilmList } from '../../components/film-list/film-list';
 
 export type MyListPageProps = {
   films: Film[];

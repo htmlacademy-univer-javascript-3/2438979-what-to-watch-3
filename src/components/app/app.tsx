@@ -43,7 +43,7 @@ export function App({promoFilm, films, videoSource}: AppProps) {
         />
         <Route
           path={AppRoute.Film}
-          element={<MoviePage/>}
+          element={<MoviePage film={films[0]} similarFilms={films.slice(0, 4)}/>}
         />
         <Route
           path={AppRoute.Player}
