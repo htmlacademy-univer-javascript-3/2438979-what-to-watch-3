@@ -1,9 +1,9 @@
 import { MainPage } from '../../pages/main-page/main-page';
-import { MainPageProps } from '../../pages/main-page/main-page';
 import { SignInPage } from '../../pages/sign-in-page/sign-in-page';
 import { AddReviewPage } from '../../pages/add-review-page/add-review-page';
 import { MyListPage } from '../../pages/my-list-page/my-list-page';
 import { MoviePage } from '../../pages/movie-page/movie-page';
+import { PromoFilm, Film } from '../../types/types';
 import { PlayerPage } from '../../pages/player-page/player-page';
 import { NotFoundPage } from '../../pages/not-found-page/not-found-page';
 import { Route, BrowserRouter, Routes } from 'react-router-dom';
@@ -12,9 +12,10 @@ import { PrivateRoute } from '../private-route/private-route';
 import { AuthorizationStatus } from '../../constants/authorization-status';
 import { PlayButton } from '../../pages/player-page/play-button-component';
 
-
-export type AppProps = MainPageProps & {
+export type AppProps = {
   videoSource: string;
+  promoFilm: PromoFilm;
+  films: Film[];
 }
 
 export function App({promoFilm, films, videoSource}: AppProps) {
@@ -26,7 +27,6 @@ export function App({promoFilm, films, videoSource}: AppProps) {
           element={
             <MainPage
               promoFilm={promoFilm}
-              films={films}
             />
           }
         />

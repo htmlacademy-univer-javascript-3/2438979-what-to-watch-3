@@ -1,3 +1,4 @@
+import cn from 'classnames';
 import { Dispatch, SetStateAction } from 'react';
 
 export enum MoviePageTab {
@@ -14,7 +15,10 @@ type TabItemProps = {
 
 export function TabItem({tabType, isChoosen, onClick}: TabItemProps): JSX.Element {
   return (
-    <li className={`film-nav__item ${isChoosen ? ' film-nav__item--active' : ''}`} style={{cursor: 'pointer'}}>
+    <li
+      className={cn('film-nav__item', {' film-nav__item--active' : isChoosen})}
+      style={{cursor: 'pointer'}}
+    >
       <div onClick={() => onClick(tabType)} className="film-nav__link">{tabType}</div>
     </li>
   );
