@@ -4,7 +4,7 @@ import { App } from './components/app/app';
 import { promoFilm } from './mocks/promo-film';
 import { films } from './mocks/films';
 import { videoSource } from './mocks/video-source';
-import { store } from './store';
+import { store } from './store/store';
 import { Provider } from 'react-redux';
 
 const root = ReactDOM.createRoot(

@@ -3,7 +3,7 @@ import { SignInPage } from '../../pages/sign-in-page/sign-in-page';
 import { AddReviewPage } from '../../pages/add-review-page/add-review-page';
 import { MyListPage } from '../../pages/my-list-page/my-list-page';
 import { MoviePage } from '../../pages/movie-page/movie-page';
-import { PromoFilm, Film } from '../../types/types';
+import { PromoFilm, Film } from '../../types/films';
 import { PlayerPage } from '../../pages/player-page/player-page';
 import { NotFoundPage } from '../../pages/not-found-page/not-found-page';
 import { Route, BrowserRouter, Routes } from 'react-router-dom';
@@ -13,7 +13,7 @@ import { AuthorizationStatus } from '../../constants/authorization-status';
 import { PlayButton } from '../../pages/player-page/play-button-component';
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux-hooks';
-import { fetchFilms, fetchPromoFilm } from '../../store/api-actions';
+import { checkAuthorization, fetchFilms, fetchPromoFilm } from '../../store/api-actions';
 import { LoadingScreen } from '../loading-screen/loading-screen';
 
 export type AppProps = {
@@ -27,14 +27,16 @@ export function App({promoFilm, films, videoSource}: AppProps) {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
+    dispatch(checkAuthorization());
     dispatch(fetchPromoFilm());
     dispatch(fetchFilms());
   }, [dispatch]);
 
   const isFilmsLoading = useAppSelector((state) => state.isFilmsLoading);
   const isPromoFilmLoading = useAppSelector((state) => state.isPromoFilmLoading);
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
 
-  if (isFilmsLoading || isPromoFilmLoading) {
+  if (authorizationStatus === AuthorizationStatus.Unknown || isFilmsLoading || isPromoFilmLoading) {
     return <LoadingScreen/>;
   }
 
@@ -75,7 +77,7 @@ export function App({promoFilm, films, videoSource}: AppProps) {
         <Route
           path={AppRoute.MyList}
           element={
-            <PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}>
+            <PrivateRoute>
               <MyListPage films={films}/>
             </PrivateRoute>
           }

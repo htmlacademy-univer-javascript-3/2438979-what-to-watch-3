@@ -1,4 +1,4 @@
-import { PromoFilm } from '../types/types';
+import { PromoFilm } from '../types/films';
 import { videoSource } from './video-source';
 
 export const promoFilm : PromoFilm = {

@@ -1,4 +1,4 @@
-import { Film } from '../types/types';
+import { Film } from '../types/films';
 import { videoSource } from './video-source';
 
 export const films: Film[] = [
