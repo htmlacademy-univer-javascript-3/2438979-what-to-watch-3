@@ -1,11 +1,10 @@
 import cn from 'classnames';
 import { Link } from 'react-router-dom';
-import { GenreType } from '../../constants/genre-type';
 import { useAppSelector, useAppDispatch } from '../../hooks/redux-hooks';
-import { changeGenre } from '../../store/action';
+import { changeGenre } from '../../store/actions';
 
 type GenreItemProps = {
-  genre: GenreType;
+  genre: string;
 }
 
 export function GenreItem({genre}: GenreItemProps): JSX.Element {

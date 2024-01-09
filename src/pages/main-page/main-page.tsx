@@ -1,32 +1,28 @@
 import React from 'react';
-import { PromoFilm } from '../../types/types';
 import { Logo } from '../../components/logos/logo';
 import { Footer } from '../../components/footers/footer';
 import { FilmList } from '../../components/film-list/film-list';
 import { GenresList } from './genres-list';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux-hooks';
 import { useEffect } from 'react';
-import { changeGenre, resetFilmsToShowCount } from '../../store/action';
-import { GenreType } from '../../constants/genre-type';
+import { changeGenre, resetFilmsToShowCount } from '../../store/actions';
+import { ALL_GENRES } from '../../constants/constants';
 import { ShowMoreButton } from './show-more';
 
-export type MainPageProps = {
-  promoFilm: PromoFilm;
-}
-
-export function MainPage({promoFilm}: MainPageProps): JSX.Element {
+export function MainPage(): JSX.Element {
   const dispatch = useAppDispatch();
   const films = useAppSelector((state) => state.filmsByGenre);
+  const promoFilm = useAppSelector((state) => state.promoFilm);
   const filmsToShowCount = useAppSelector((state) => state.filmsByGenreCount);
   useEffect(() => {
-    dispatch(changeGenre(GenreType.AllGenres));
+    dispatch(changeGenre(ALL_GENRES));
     dispatch(resetFilmsToShowCount());
   }, [dispatch]);
   return (
     <React.Fragment>
       <section className="film-card">
         <div className="film-card__bg">
-          <img src={promoFilm.imageSource} alt={promoFilm.title} />
+          <img src={promoFilm?.backgroundImage} alt={promoFilm?.name} />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -49,14 +45,14 @@ export function MainPage({promoFilm}: MainPageProps): JSX.Element {
         <div className="film-card__wrap">
           <div className="film-card__info">
             <div className="film-card__poster">
-              <img src={promoFilm.posterSource} alt="The Grand Budapest Hotel poster" width="218" height="327" />
+              <img src={promoFilm?.posterImage} alt="The Grand Budapest Hotel poster" width="218" height="327" />
             </div>
 
             <div className="film-card__desc">
-              <h2 className="film-card__title">{promoFilm.title}</h2>
+              <h2 className="film-card__title">{promoFilm?.name}</h2>
               <p className="film-card__meta">
-                <span className="film-card__genre">{promoFilm.genre}</span>
-                <span className="film-card__year">{promoFilm.premiereYear}</span>
+                <span className="film-card__genre">{promoFilm?.genre}</span>
+                <span className="film-card__year">{promoFilm?.released}</span>
               </p>
 
               <div className="film-card__buttons">

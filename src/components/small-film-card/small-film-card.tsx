@@ -2,7 +2,7 @@ import { Film } from '../../types/types';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { CardVideoPlayer } from './card-video-player';
-import { PREVIEW_VIDEO_DELAY_IN_MS } from '../../constants/integer-constants';
+import { PREVIEW_VIDEO_DELAY_IN_MS } from '../../constants/constants';
 
 type SmallFilmCardProps = {
   film: Film;
@@ -45,13 +45,13 @@ export function SmallFilmCard({film, setActiveCardId}: SmallFilmCardProps): JSX.
       <Link to={`/films/${film.id}`}>
         <CardVideoPlayer
           muted
-          videoSource={film.videoSource}
-          posterSource={film.imageSource}
+          videoSource={film.previewVideoLink}
+          posterSource={film.previewImage}
           isPlaying={isVideoPlaying}
         />
       </Link>
       <h3 className="small-film-card__title">
-        <Link to={`/films/${film.id}`} className="small-film-card__link">{film.title}</Link>
+        <Link to={`/films/${film.id}`} className="small-film-card__link">{film.name}</Link>
       </h3>
     </article>
   );
