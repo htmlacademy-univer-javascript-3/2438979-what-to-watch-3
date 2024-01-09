@@ -1,4 +1,4 @@
-import { Film } from '../../types/types';
+import { Film } from '../../types/films';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { CardVideoPlayer } from './card-video-player';

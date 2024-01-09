@@ -8,6 +8,7 @@ import { useEffect } from 'react';
 import { changeGenre, resetFilmsToShowCount } from '../../store/actions';
 import { ALL_GENRES } from '../../constants/constants';
 import { ShowMoreButton } from './show-more';
+import { UserBlock } from '../../components/user-block/user-block';
 
 export function MainPage(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -18,6 +19,7 @@ export function MainPage(): JSX.Element {
     dispatch(changeGenre(ALL_GENRES));
     dispatch(resetFilmsToShowCount());
   }, [dispatch]);
+
   return (
     <React.Fragment>
       <section className="film-card">
@@ -28,18 +30,8 @@ export function MainPage(): JSX.Element {
         <h1 className="visually-hidden">WTW</h1>
 
         <header className="page-header film-card__head">
-          <Logo />
-
-          <ul className="user-block">
-            <li className="user-block__item">
-              <div className="user-block__avatar">
-                <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-              </div>
-            </li>
-            <li className="user-block__item">
-              <a className="user-block__link">Sign out</a>
-            </li>
-          </ul>
+          <Logo/>
+          <UserBlock/>
         </header>
 
         <div className="film-card__wrap">
