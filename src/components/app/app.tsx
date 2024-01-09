@@ -11,6 +11,10 @@ import { AppRoute } from '../../constants/app-route';
 import { PrivateRoute } from '../private-route/private-route';
 import { AuthorizationStatus } from '../../constants/authorization-status';
 import { PlayButton } from '../../pages/player-page/play-button-component';
+import { useEffect } from 'react';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux-hooks';
+import { fetchFilms, fetchPromoFilm } from '../../store/api-actions';
+import { LoadingScreen } from '../loading-screen/loading-screen';
 
 export type AppProps = {
   videoSource: string;
@@ -19,25 +23,36 @@ export type AppProps = {
 }
 
 export function App({promoFilm, films, videoSource}: AppProps) {
+
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchPromoFilm());
+    dispatch(fetchFilms());
+  }, [dispatch]);
+
+  const isFilmsLoading = useAppSelector((state) => state.isFilmsLoading);
+  const isPromoFilmLoading = useAppSelector((state) => state.isPromoFilmLoading);
+
+  if (isFilmsLoading || isPromoFilmLoading) {
+    return <LoadingScreen/>;
+  }
+
   return (
     <BrowserRouter>
       <Routes>
         <Route
           path={AppRoute.Main}
-          element={
-            <MainPage
-              promoFilm={promoFilm}
-            />
-          }
+          element={<MainPage/>}
         />
         <Route
           path={AppRoute.AddReview}
           element={
             <AddReviewPage
               id={1}
-              title={promoFilm.title}
-              imageSource={promoFilm.imageSource}
-              posterSource={promoFilm.posterSource}
+              title={promoFilm.name}
+              imageSource={promoFilm.backgroundImage}
+              posterSource={promoFilm.posterImage}
             />
           }
         />

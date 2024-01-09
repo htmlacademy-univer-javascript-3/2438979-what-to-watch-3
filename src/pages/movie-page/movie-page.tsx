@@ -16,7 +16,7 @@ export function MoviePage({film, similarFilms}: MoviePageProps): JSX.Element {
       <section className="film-card film-card--full">
         <div className="film-card__hero">
           <div className="film-card__bg">
-            <img src={film.imageSource} alt={film.title} />
+            <img src={film.previewImage} alt={film.name} />
           </div>
 
           <h1 className="visually-hidden">WTW</h1>
@@ -67,7 +67,7 @@ export function MoviePage({film, similarFilms}: MoviePageProps): JSX.Element {
         <div className="film-card__wrap film-card__translate-top">
           <div className="film-card__info">
             <div className="film-card__poster film-card__poster--big">
-              <img src="img/the-grand-budapest-hotel-poster.jpg" alt={`${film.title} poster`} width="218" height="327" />
+              <img src="img/the-grand-budapest-hotel-poster.jpg" alt={`${film.name} poster`} width="218" height="327" />
             </div>
             <Tabs/>
           </div>

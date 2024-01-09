@@ -1,10 +1,14 @@
-import { GenreType } from '../../constants/genre-type';
+import { ALL_GENRES } from '../../constants/constants';
 import { GenreItem } from './genre-item';
+import { useAppSelector } from '../../hooks/redux-hooks';
 
 export function GenresList(): JSX.Element {
+  const films = useAppSelector((state) => state.films);
+  const existingGenres = new Set(films.map((film) => film.genre));
+  const genresList = [ALL_GENRES, ...existingGenres];
   return (
     <ul className="catalog__genres-list">
-      {Object.values(GenreType).map((genreType: GenreType) => <GenreItem key={genreType} genre={genreType}/>)}
+      {genresList.map((genre: string) => <GenreItem key={genre} genre={genre}/>)}
     </ul>
   );
 }

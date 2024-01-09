@@ -1,5 +1,5 @@
 import { useAppDispatch } from '../../hooks/redux-hooks';
-import { showMoreFilms } from '../../store/action';
+import { showMoreFilms } from '../../store/actions';
 
 export function ShowMoreButton(): JSX.Element {
   const dispatch = useAppDispatch();

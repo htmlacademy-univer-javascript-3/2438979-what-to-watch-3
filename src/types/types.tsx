@@ -1,15 +1,17 @@
 export type PromoFilm = {
-  title: string;
+  id: string;
+  name: string;
   genre: string;
-  premiereYear: number;
-  imageSource: string;
-  posterSource: string;
+  released: number;
+  backgroundImage: string;
+  posterImage: string;
+  videoLink: string;
 }
 
 export type Film = {
   id: number;
-  title: string;
-  imageSource: string;
-  videoSource: string;
+  name: string;
+  previewImage: string;
+  previewVideoLink: string;
   genre: string;
 }
