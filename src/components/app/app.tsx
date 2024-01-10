@@ -3,25 +3,18 @@ import { SignInPage } from '../../pages/sign-in-page/sign-in-page';
 import { AddReviewPage } from '../../pages/add-review-page/add-review-page';
 import { MyListPage } from '../../pages/my-list-page/my-list-page';
 import { MoviePage } from '../../pages/movie-page/movie-page';
-import { Film } from '../../types/films';
 import { PlayerPage } from '../../pages/player-page/player-page';
 import { NotFoundPage } from '../../pages/not-found-page/not-found-page';
 import { Route, BrowserRouter, Routes } from 'react-router-dom';
 import { AppRoute } from '../../constants/enum-constants/app-route';
 import { PrivateRoute } from '../private-route/private-route';
 import { AuthorizationStatus } from '../../constants/enum-constants/authorization-status';
-import { PlayButton } from '../../pages/player-page/play-button-component';
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux-hooks';
 import { checkAuthorization, fetchFilms, fetchPromoFilm } from '../../store/api-actions';
 import { LoadingScreen } from '../loading-screen/loading-screen';
 
-export type AppProps = {
-  videoSource: string;
-  films: Film[];
-}
-
-export function App({films, videoSource}: AppProps) {
+export function App() {
 
   const dispatch = useAppDispatch();
 
@@ -48,7 +41,11 @@ export function App({films, videoSource}: AppProps) {
         />
         <Route
           path={AppRoute.AddReview}
-          element={<AddReviewPage/>}
+          element={
+            <PrivateRoute>
+              <AddReviewPage/>
+            </PrivateRoute>
+          }
         />
         <Route
           path={AppRoute.Film}
@@ -56,11 +53,7 @@ export function App({films, videoSource}: AppProps) {
         />
         <Route
           path={AppRoute.Player}
-          element={
-            <PlayerPage videoSource={videoSource}>
-              <PlayButton/>
-            </PlayerPage>
-          }
+          element={<PlayerPage/>}
         />
         <Route
           path={AppRoute.SignIn}
@@ -70,7 +63,7 @@ export function App({films, videoSource}: AppProps) {
           path={AppRoute.MyList}
           element={
             <PrivateRoute>
-              <MyListPage films={films}/>
+              <MyListPage/>
             </PrivateRoute>
           }
         />

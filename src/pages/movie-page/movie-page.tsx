@@ -13,6 +13,10 @@ import { NotFoundPage } from '../not-found-page/not-found-page';
 import { SIMILAR_FILMS_MAX_COUNT } from '../../constants/constants';
 import { Link } from 'react-router-dom';
 import { AuthorizationStatus } from '../../constants/enum-constants/authorization-status';
+import { PlayButton } from '../../components/play-button/play-button';
+import { FavoritesListButton } from '../../components/favorites-list-button/favorites-list-button';
+import { useCallback } from 'react';
+import { loadFilmDetails } from '../../store/actions';
 
 export function MoviePage(): JSX.Element {
   const {id} = useParams();
@@ -30,6 +34,13 @@ export function MoviePage(): JSX.Element {
     dispatch(fetchSimilarFilms(id));
     dispatch(fetchFilmReviews(id));
   }, [dispatch, id]);
+
+  const afterFavoritesCallback = useCallback(() => {
+    if (!filmDetails) {
+      return;
+    }
+    dispatch(loadFilmDetails({...filmDetails, isFavorite: !filmDetails.isFavorite}));
+  }, [dispatch, filmDetails]);
 
   if (isFilmDetailsLoading) {
     return <LoadingScreen/>;
@@ -61,19 +72,8 @@ export function MoviePage(): JSX.Element {
               </p>
 
               <div className="film-card__buttons">
-                <button className="btn btn--play film-card__button" type="button">
-                  <svg viewBox="0 0 19 19" width="19" height="19">
-                    <use xlinkHref="#play-s"></use>
-                  </svg>
-                  <span>Play</span>
-                </button>
-                <button className="btn btn--list film-card__button" type="button">
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
-                  </svg>
-                  <span>My list</span>
-                  <span className="film-card__count">9</span>
-                </button>
+                <PlayButton filmId={filmDetails.id}/>
+                <FavoritesListButton film={filmDetails} callback={afterFavoritesCallback}/>
                 {authorizationStatus === AuthorizationStatus.Auth &&
                 <Link to={`/films/${filmDetails.id}/review`} className="btn film-card__button">Add review</Link>}
               </div>
