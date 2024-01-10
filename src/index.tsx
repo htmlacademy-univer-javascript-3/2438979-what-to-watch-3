@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { App } from './components/app/app';
-import { promoFilm } from './mocks/promo-film';
 import { films } from './mocks/films';
 import { videoSource } from './mocks/video-source';
 import { store } from './store/store';
@@ -25,7 +24,7 @@ root.render(
         pauseOnHover
         theme={'light'}
       />
-      <App promoFilm={promoFilm} films={films} videoSource={videoSource}/>
+      <App films={films} videoSource={videoSource}/>
     </Provider>
   </React.StrictMode>
 );
