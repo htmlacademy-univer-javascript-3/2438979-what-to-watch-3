@@ -2,7 +2,7 @@ import { createReducer } from '@reduxjs/toolkit';
 import { Film, FilmDetails, PromoFilm } from '../types/films';
 import { changeFilmsLoadingStatus, changeGenre, changePromoFilmLoadingStatus, loadFilmDetails, loadFilmReviews, loadFilms,
   loadSimilarFilms, setIsFilmDetailsLoading,
-  requireAuthorization, resetFilmsToShowCount, setPromoFilm, setUser, showMoreFilms } from './actions';
+  requireAuthorization, resetFilmsToShowCount, setPromoFilm, setUser, showMoreFilms, loadFavoriteFilms } from './actions';
 import { ALL_GENRES, FILMS_BATCH_SIZE } from '../constants/constants';
 import { AuthorizationStatus } from '../constants/enum-constants/authorization-status';
 import { User } from '../types/auth';
@@ -23,6 +23,7 @@ type InitialState = {
   similarFilms: Film[];
   chosenFilmReviews: FilmReview[];
   isReviewCreated: boolean;
+  favoriteFilms: Film[];
 }
 
 const initialState: InitialState = {
@@ -40,6 +41,7 @@ const initialState: InitialState = {
   similarFilms: [],
   chosenFilmReviews: [],
   isReviewCreated: false,
+  favoriteFilms: [],
 };
 
 export const reducer = createReducer(initialState, (builder) => {
@@ -80,6 +82,9 @@ export const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(setIsFilmDetailsLoading, (state, action) => {
       state.isFilmDetailsLoading = action.payload;
+    })
+    .addCase(loadFavoriteFilms, (state, action) => {
+      state.favoriteFilms = action.payload;
     })
     .addCase(loadFilms, (state, action) => {
       state.films = action.payload;

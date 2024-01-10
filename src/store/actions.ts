@@ -29,3 +29,5 @@ export const loadSimilarFilms = createAction<Film[]>('films/id/loadSimilarFilms'
 export const loadFilmReviews = createAction<FilmReview[]>('films/id/loadFilmReviews');
 
 export const setIsFilmDetailsLoading = createAction<boolean>('data/setIsFilmDetailsLoading');
+
+export const loadFavoriteFilms = createAction<Film[]>('data/loadFavoriteFilms');

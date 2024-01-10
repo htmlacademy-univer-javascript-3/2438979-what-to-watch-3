@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks/redux-hooks';
 import { useNavigate } from 'react-router-dom';
 import { AppRoute } from '../../constants/enum-constants/app-route';
 import { logout } from '../../store/api-actions';
+import { Link } from 'react-router-dom';
 
 export function UserBlock(): JSX.Element {
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
@@ -15,7 +16,9 @@ export function UserBlock(): JSX.Element {
       <ul className="user-block">
         <li className="user-block__item">
           <div className="user-block__avatar">
-            <img src={user?.avatarUrl} alt="User avatar" width="63" height="63" />
+            <Link to={AppRoute.MyList}>
+              <img src={user?.avatarUrl} alt="User avatar" width="63" height="63" />
+            </Link>
           </div>
         </li>
         <li className="user-block__item">

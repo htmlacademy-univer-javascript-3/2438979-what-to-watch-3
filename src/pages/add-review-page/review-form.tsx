@@ -47,7 +47,7 @@ export function ReviewForm({filmId}: ReviewFormProps): JSX.Element {
             onChange={(evt) => setText(evt.target.value)}
           />
           <div className="add-review__submit">
-            <button className="add-review__btn" type="submit" disabled={text.length < 50 || !rating}>Post</button>
+            <button className="add-review__btn" type="submit" disabled={text.length < 50 || text.length > 400 || !rating}>Post</button>
           </div>
         </div>
       </form>
