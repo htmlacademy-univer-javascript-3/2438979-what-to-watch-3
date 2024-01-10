@@ -1,10 +1,12 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { Film, PromoFilm } from '../types/films';
-import { changeFilmsLoadingStatus, changeGenre, changePromoFilmLoadingStatus, loadFilms, requireAuthorization, resetFilmsToShowCount, setPromoFilm, setUser, showMoreFilms } from './actions';
-import { ALL_GENRES } from '../constants/constants';
-import { FILMS_BATCH_SIZE } from '../constants/constants';
-import { AuthorizationStatus } from '../constants/authorization-status';
+import { Film, FilmDetails, PromoFilm } from '../types/films';
+import { changeFilmsLoadingStatus, changeGenre, changePromoFilmLoadingStatus, loadFilmDetails, loadFilmReviews, loadFilms,
+  loadSimilarFilms, setIsFilmDetailsLoading,
+  requireAuthorization, resetFilmsToShowCount, setPromoFilm, setUser, showMoreFilms } from './actions';
+import { ALL_GENRES, FILMS_BATCH_SIZE } from '../constants/constants';
+import { AuthorizationStatus } from '../constants/enum-constants/authorization-status';
 import { User } from '../types/auth';
+import { FilmReview } from '../types/reviews';
 
 type InitialState = {
   genre: string;
@@ -16,6 +18,11 @@ type InitialState = {
   isPromoFilmLoading: boolean;
   authorizationStatus: AuthorizationStatus;
   user: User | null;
+  chosenFilm: FilmDetails | null;
+  isFilmDetailsLoading: boolean;
+  similarFilms: Film[];
+  chosenFilmReviews: FilmReview[];
+  isReviewCreated: boolean;
 }
 
 const initialState: InitialState = {
@@ -28,6 +35,11 @@ const initialState: InitialState = {
   isPromoFilmLoading: false,
   authorizationStatus: AuthorizationStatus.Unknown,
   user: null,
+  chosenFilm: null,
+  isFilmDetailsLoading: false,
+  similarFilms: [],
+  chosenFilmReviews: [],
+  isReviewCreated: false,
 };
 
 export const reducer = createReducer(initialState, (builder) => {
@@ -56,6 +68,18 @@ export const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(setUser, (state, action) => {
       state.user = action.payload;
+    })
+    .addCase(loadFilmDetails, (state, action) => {
+      state.chosenFilm = action.payload;
+    })
+    .addCase(loadSimilarFilms, (state, action) => {
+      state.similarFilms = action.payload;
+    })
+    .addCase(loadFilmReviews, (state, action) => {
+      state.chosenFilmReviews = action.payload;
+    })
+    .addCase(setIsFilmDetailsLoading, (state, action) => {
+      state.isFilmDetailsLoading = action.payload;
     })
     .addCase(loadFilms, (state, action) => {
       state.films = action.payload;

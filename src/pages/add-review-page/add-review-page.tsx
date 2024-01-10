@@ -1,44 +1,61 @@
-import { LogoLink } from '../../components/logos/logo-link';
+import { Logo } from '../../components/logo/logo';
 import { ReviewForm } from './review-form';
 import { Link } from 'react-router-dom';
 import { UserBlock } from '../../components/user-block/user-block';
+import { useParams } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux-hooks';
+import { useEffect } from 'react';
+import { fetchFilmDetails } from '../../store/api-actions';
+import { LoadingScreen } from '../../components/loading-screen/loading-screen';
+import { NotFoundPage } from '../not-found-page/not-found-page';
 
-export type AddReviewPageProps = {
-  id: number;
-  title: string;
-  imageSource: string;
-  posterSource: string;
-}
+export function AddReviewPage(): JSX.Element {
+  const {id} = useParams();
+  const filmDetails = useAppSelector((state) => state.chosenFilm);
+  const isFilmDetailsLoading = useAppSelector((state) => state.isFilmDetailsLoading);
+  const dispatch = useAppDispatch();
 
-export function AddReviewPage({id, title, imageSource, posterSource}: AddReviewPageProps): JSX.Element {
+  useEffect(() => {
+    if (id === undefined) {
+      return;
+    }
+    dispatch(fetchFilmDetails(id));
+  }, [dispatch, id]);
+
+  if (isFilmDetailsLoading) {
+    return <LoadingScreen/>;
+  }
+  if (!filmDetails) {
+    return <NotFoundPage/>;
+  }
   return (
-    <section className="film-card film-card--full">
+    <section className="film-card film-card--full" style={{background: filmDetails.backgroundColor}}>
       <div className="film-card__header">
         <div className="film-card__bg">
-          <img src={imageSource} alt={title} />
+          <img src={filmDetails.backgroundImage} alt={filmDetails.name} />
         </div>
         <h1 className="visually-hidden">WTW</h1>
         <header className="page-header">
-          <LogoLink />
+          <Logo />
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
-                <Link to={`/films/${id}`} className="breadcrumbs__link">
-                  {title}
+                <Link to={`/films/${filmDetails.id}`} className="breadcrumbs__link">
+                  {filmDetails.name}
                 </Link>
               </li>
               <li className="breadcrumbs__item">
-                <a className="breadcrumbs__link">Add review</a>
+                <Link to={'#'} className="breadcrumbs__link">Add review</Link>
               </li>
             </ul>
           </nav>
           <UserBlock/>
         </header>
         <div className="film-card__poster film-card__poster--small">
-          <img src={posterSource} alt={`${title} poster`} width="218" height="327" />
+          <img src={filmDetails.posterImage} alt={`${filmDetails.name} poster`} width="218" height="327" />
         </div>
       </div>
-      <ReviewForm/>
+      <ReviewForm filmId={filmDetails.id}/>
     </section>
   );
 }

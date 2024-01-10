@@ -1,6 +1,6 @@
 import React from 'react';
-import { Logo } from '../../components/logos/logo';
-import { Footer } from '../../components/footers/footer';
+import { Logo } from '../../components/logo/logo';
+import { Footer } from '../../components/footer/footer';
 import { FilmList } from '../../components/film-list/film-list';
 import { GenresList } from './genres-list';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux-hooks';

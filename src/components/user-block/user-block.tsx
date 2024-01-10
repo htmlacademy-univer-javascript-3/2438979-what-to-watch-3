@@ -1,7 +1,7 @@
-import { AuthorizationStatus } from '../../constants/authorization-status';
+import { AuthorizationStatus } from '../../constants/enum-constants/authorization-status';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux-hooks';
 import { useNavigate } from 'react-router-dom';
-import { AppRoute } from '../../constants/app-route';
+import { AppRoute } from '../../constants/enum-constants/app-route';
 import { logout } from '../../store/api-actions';
 
 export function UserBlock(): JSX.Element {

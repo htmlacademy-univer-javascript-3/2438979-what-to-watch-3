@@ -1,6 +1,6 @@
 import React from 'react';
-import { LogoLink } from '../../components/logos/logo-link';
-import { FooterLink } from '../../components/footers/footer-link';
+import { Logo } from '../../components/logo/logo';
+import { Footer } from '../../components/footer/footer';
 
 export function MoviePageInList(): JSX.Element {
   return (
@@ -14,7 +14,7 @@ export function MoviePageInList(): JSX.Element {
           <h1 className="visually-hidden">WTW</h1>
 
           <header className="page-header film-card__head">
-            <LogoLink />
+            <Logo />
 
             <ul className="user-block">
               <li className="user-block__item">
@@ -142,7 +142,7 @@ export function MoviePageInList(): JSX.Element {
           </div>
         </section>
 
-        <FooterLink />
+        <Footer />
       </div>
     </React.Fragment>
   );
