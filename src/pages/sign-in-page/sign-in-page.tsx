@@ -1,9 +1,9 @@
-import { LogoLink } from '../../components/logos/logo-link';
-import { FooterLink } from '../../components/footers/footer-link';
+import { Logo } from '../../components/logo/logo';
+import { Footer } from '../../components/footer/footer';
 import { useAppSelector, useAppDispatch } from '../../hooks/redux-hooks';
 import { useNavigate } from 'react-router-dom';
-import { AuthorizationStatus } from '../../constants/authorization-status';
-import { AppRoute } from '../../constants/app-route';
+import { AuthorizationStatus } from '../../constants/enum-constants/authorization-status';
+import { AppRoute } from '../../constants/enum-constants/app-route';
 import { useRef, useState } from 'react';
 import { login } from '../../store/api-actions';
 import { FormEvent } from 'react';
@@ -36,7 +36,7 @@ export function SignInPage(): JSX.Element {
   return (
     <div className="user-page">
       <header className="page-header user-page__head">
-        <LogoLink />
+        <Logo />
         <h1 className="page-title user-page__title">Sign in</h1>
       </header>
       <div className="sign-in user-page__content">
@@ -59,7 +59,7 @@ export function SignInPage(): JSX.Element {
           </div>
         </form>
       </div>
-      <FooterLink/>
+      <Footer/>
     </div>
   );
 }
